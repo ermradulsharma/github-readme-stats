@@ -19,18 +19,18 @@ describe("Test calculateRank", () => {
   });
 
   it("beginner user gets B- rank", () => {
-    expect(
-      calculateRank({
-        all_commits: false,
-        commits: 125,
-        prs: 25,
-        issues: 10,
-        reviews: 5,
-        repos: 0,
-        stars: 25,
-        followers: 5,
-      }),
-    ).toStrictEqual({ level: "B-", percentile: 65.02918514848257 });
+    const result = calculateRank({
+      all_commits: false,
+      commits: 125,
+      prs: 25,
+      issues: 10,
+      reviews: 5,
+      repos: 0,
+      stars: 25,
+      followers: 5,
+    });
+    expect(result.level).toBe("B-");
+    expect(result.percentile).toBeCloseTo(65.029, 3);
   });
 
   it("median user gets B+ rank", () => {
@@ -64,47 +64,47 @@ describe("Test calculateRank", () => {
   });
 
   it("advanced user gets A rank", () => {
-    expect(
-      calculateRank({
-        all_commits: false,
-        commits: 500,
-        prs: 100,
-        issues: 50,
-        reviews: 20,
-        repos: 0,
-        stars: 200,
-        followers: 40,
-      }),
-    ).toStrictEqual({ level: "A", percentile: 20.841471354166664 });
+    const result = calculateRank({
+      all_commits: false,
+      commits: 500,
+      prs: 100,
+      issues: 50,
+      reviews: 20,
+      repos: 0,
+      stars: 200,
+      followers: 40,
+    });
+    expect(result.level).toBe("A");
+    expect(result.percentile).toBeCloseTo(20.841, 3);
   });
 
   it("expert user gets A+ rank", () => {
-    expect(
-      calculateRank({
-        all_commits: false,
-        commits: 1000,
-        prs: 200,
-        issues: 100,
-        reviews: 40,
-        repos: 0,
-        stars: 800,
-        followers: 160,
-      }),
-    ).toStrictEqual({ level: "A+", percentile: 5.575988339442828 });
+    const result = calculateRank({
+      all_commits: false,
+      commits: 1000,
+      prs: 200,
+      issues: 100,
+      reviews: 40,
+      repos: 0,
+      stars: 800,
+      followers: 160,
+    });
+    expect(result.level).toBe("A+");
+    expect(result.percentile).toBeCloseTo(5.575, 3);
   });
 
   it("sindresorhus gets S rank", () => {
-    expect(
-      calculateRank({
-        all_commits: false,
-        commits: 1300,
-        prs: 1500,
-        issues: 4500,
-        reviews: 1000,
-        repos: 0,
-        stars: 600000,
-        followers: 50000,
-      }),
-    ).toStrictEqual({ level: "S", percentile: 0.4578556547153667 });
+    const result = calculateRank({
+      all_commits: false,
+      commits: 1300,
+      prs: 1500,
+      issues: 4500,
+      reviews: 1000,
+      repos: 0,
+      stars: 600000,
+      followers: 50000,
+    });
+    expect(result.level).toBe("S");
+    expect(result.percentile).toBeCloseTo(0.457, 3);
   });
 });

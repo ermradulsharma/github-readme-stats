@@ -20,7 +20,7 @@ const fetchWakatimeStats = async ({ username }) => {
         process.env.WAKATIME_API_DOMAIN
           ? process.env.WAKATIME_API_DOMAIN.replace(/\/$/gi, "")
           : "wakatime.com"
-      }/api/v1/users/${username}/stats?is_including_today=true`,
+      }/api/v1/users/${encodeURIComponent(username)}/stats?is_including_today=true`,
     );
 
     return data.data;

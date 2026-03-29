@@ -12,15 +12,16 @@ on:
     #        * *  *   * *
     - cron: "0 0 */30 * *"
 
-permissions:
-  contents: read
-  pull-requests: write
+permissions: read-all
 
 jobs:
   updateLanguages:
     if: github.repository == 'ermradulsharma/github-readme-stats'
     name: Update supported languages
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     strategy:
       matrix:
         node-version: [22.x]

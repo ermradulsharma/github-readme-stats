@@ -146,7 +146,7 @@ const statsFetcher = async ({
 
     // Disable multi page fetching on public Vercel instance due to rate limits.
     const repoNodesWithStars = repoNodes.filter(
-      (node) => node.stargazers.totalCount !== 0,
+      (/** @type {any} */ node) => node.stargazers.totalCount !== 0,
     );
     hasNextPage =
       process.env.FETCH_MULTI_PAGE_STARS === "true" &&
@@ -170,7 +170,7 @@ const statsFetcher = async ({
 const fetchTotalCommits = (variables, token) => {
   return axios({
     method: "get",
-    url: `https://api.github.com/search/commits?q=author:${variables.login}`,
+    url: `https://api.github.com/search/commits?q=author:${encodeURIComponent(/** @type {any} */ (variables).login)}`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/vnd.github.cloak-preview",
@@ -199,7 +199,7 @@ const totalCommitsFetcher = async (username) => {
     res = await retryer(fetchTotalCommits, { login: username });
   } catch (err) {
     logger.log(err);
-    throw new Error(err);
+    throw new Error(String(err));
   }
 
   const totalCount = res.data.total_count;
@@ -315,10 +315,10 @@ const fetchStats = async (
   let repoToHide = new Set(allExcludedRepos);
 
   stats.totalStars = user.repositories.nodes
-    .filter((data) => {
+    .filter((/** @type {any} */ data) => {
       return !repoToHide.has(data.name);
     })
-    .reduce((prev, curr) => {
+    .reduce((/** @type {any} */ prev, /** @type {any} */ curr) => {
       return prev + curr.stargazers.totalCount;
     }, 0);
 

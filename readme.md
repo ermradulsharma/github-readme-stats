@@ -54,6 +54,7 @@
     - [Showing commits count for specified year](#showing-commits-count-for-specified-year)
     - [Themes](#themes)
     - [Customization](#customization)
+    - [Layouts (Bar, Line)](#layouts-bar-line)
 - [GitHub Extra Pins](#github-extra-pins)
     - [Usage](#usage)
     - [Options](#options)
@@ -156,6 +157,22 @@ You can specify a year and fetch only the commits that were made in that year by
 
 ```md
 ![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&commits_year=2020)
+```
+
+### Layouts (Bar, Line)
+
+You can use the `&layout=` option to change the stats card design.
+
+- Bar Chart Layout
+
+```md
+![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=bar)
+```
+
+- Line Graph Activity (Daily Contributions)
+
+```md
+![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=line)
 ```
 
 ### Themes
@@ -383,6 +400,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `number_precision` | Enforce the number of digits after the decimal point for `short` number format. Must be an integer between 0 and 2. Will be ignored for `long` number format. | integer (0, 1 or 2) | `null` |
 | `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`). | string (comma-separated values) | `null` |
 | `commits_year` | Filters and counts only commits made in the specified year. | integer *(YYYY)* | `<current year> (one year to date)` |
+| `layout` | Layout of the stats card (i.e. `default`, `bar` or `line`). | enum | `default` |
 
 > [!WARNING]
 > Custom title should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) (i.e: `Mradul's GitHub Stats` should become `Mradul%27s%20GitHub%20Stats`). You can use [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.

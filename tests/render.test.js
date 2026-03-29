@@ -7,7 +7,7 @@ import { renderError } from "../src/common/render.js";
 
 describe("Test render.js", () => {
   it("should test renderError", () => {
-    document.body.innerHTML = renderError({ escaped: true, message: "Something went wrong" });
+    document.body.innerHTML = renderError({  message: "Something went wrong" });
     expect(
       queryByTestId(document.body, "message")?.children[0],
     ).toHaveTextContent(/Something went wrong/gim);
@@ -16,7 +16,7 @@ describe("Test render.js", () => {
     ).toBeEmptyDOMElement();
 
     // Secondary message
-    document.body.innerHTML = renderError({ escaped: true,
+    document.body.innerHTML = renderError({ 
       message: "Something went wrong",
       secondaryMessage: "Secondary Message",
     });

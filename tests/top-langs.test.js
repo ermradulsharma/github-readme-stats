@@ -142,7 +142,7 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true,
+      renderError({ 
         message: error.errors[0].message,
         secondaryMessage:
           "Make sure the provided username is not an organization",
@@ -167,7 +167,7 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true,
+      renderError({ 
         message: "Something went wrong",
         secondaryMessage: "Incorrect layout input",
       }),
@@ -190,7 +190,7 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true,
+      renderError({ 
         message: "This username is blacklisted",
         secondaryMessage: "Please deploy your own instance",
         renderOptions: { show_repo_link: false },
@@ -215,7 +215,7 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true,
+      renderError({ 
         message: "Something went wrong",
         secondaryMessage: "Locale not found",
       }),

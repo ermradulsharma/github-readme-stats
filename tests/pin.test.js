@@ -118,7 +118,7 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true, message: "User Repository Not found" }),
+      renderError({  message: "User Repository Not found" }),
     );
   });
 
@@ -141,7 +141,7 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true, message: "Organization Repository Not found" }),
+      renderError({  message: "Organization Repository Not found" }),
     );
   });
 
@@ -162,7 +162,7 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true,
+      renderError({ 
         message: "This username is blacklisted",
         secondaryMessage: "Please deploy your own instance",
         renderOptions: { show_repo_link: false },
@@ -188,7 +188,7 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true,
+      renderError({ 
         message: "Something went wrong",
         secondaryMessage: "Language not found",
       }),
@@ -208,7 +208,7 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ escaped: true,
+      renderError({ 
         message:
           'Missing params "username", "repo" make sure you pass the parameters in URL',
         secondaryMessage: "/api/pin?username=USERNAME&amp;repo=REPO_NAME",

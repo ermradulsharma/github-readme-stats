@@ -113,22 +113,42 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
-    setErrorCacheHeaders(res);
     if (err instanceof Error) {
+      setErrorCacheHeaders(res);
+      let sanitizedMessage = "";
+      for (const char of err.message) {
+        sanitizedMessage +=
+          char === "&"
+            ? "&amp;"
+            : char === "<"
+              ? "&lt;"
+              : char === ">"
+                ? "&gt;"
+                : char === '"'
+                  ? "&quot;"
+                  : char === "'"
+                    ? "&#39;"
+                    : char;
+      }
+      let sanitizedSecondary = "";
+      for (const char of retrieveSecondaryMessage(err) || "") {
+        sanitizedSecondary +=
+          char === "&"
+            ? "&amp;"
+            : char === "<"
+              ? "&lt;"
+              : char === ">"
+                ? "&gt;"
+                : char === '"'
+                  ? "&quot;"
+                  : char === "'"
+                    ? "&#39;"
+                    : char;
+      }
       return res.send(
         renderError({
-          message: err.message
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#39;"),
-          secondaryMessage: (retrieveSecondaryMessage(err) || "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#39;"),
+          message: sanitizedMessage,
+          secondaryMessage: sanitizedSecondary,
           escaped: true,
           renderOptions: {
             title_color,

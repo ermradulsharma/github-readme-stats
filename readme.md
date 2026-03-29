@@ -740,13 +740,23 @@ Choose from any of the [default themes](#themes)
 
 ![Harlok's WakaTime stats](https://mradulsharma-readme.vercel.app/api/wakatime?username=ffflabs)
 
+- Line Layout Demos (Activity Graph)
+
+  1. Default Line Layout
+  
+  ![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=line)
+
+  2. Line Layout with Icons and Radical Theme
+  
+  ![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=line&show_icons=true&theme=radical)
+
+  3. Line Layout (Hiding Rank) with Glassmorphism
+  
+  ![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=line&hide_rank=true&theme=glassmorphism)
+
 - Bar Chart Layout
 
 ![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=bar)
-
-- Line Graph Activity (Daily Contributions)
-
-![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=line)
 
 - Glassmorphism Theme
 

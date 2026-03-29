@@ -1,0 +1,192 @@
+node : (node:14616) 
+ExperimentalWarning: VM 
+Modules is an experimental 
+feature and might change 
+at any time
+At line:1 char:1
++ node 
+--experimental-vm-modules n
+ode_modules/jest/bin/jest.j
+s tests/pi ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: ((no  
+  de:14616) Ex...nge at    
+ any time:String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+(Use `node 
+--trace-warnings ...` to 
+show where the warning was 
+created)
+FAIL tests/pin.test.js
+  Test /api/pin
+    ?? should render error 
+card if missing required 
+parameters (8 ms)
+    ??? skipped should 
+test the request
+    ??? skipped should get 
+the query options
+    ??? skipped should 
+render error card if user 
+repo not found
+    ??? skipped should 
+render error card if org 
+repo not found
+    ??? skipped should 
+render error card if 
+username in blacklist
+    ??? skipped should 
+render error card if wrong 
+locale provided
+    ??? skipped should 
+have proper cache
+
+  ??? Test /api/pin ??? 
+should render error card 
+if missing required 
+parameters
+
+    expect(jest.fn()).toHav
+eBeenCalledWith(...expected
+)
+
+    Expected: "
+        <svg 
+width=\"576.5\"  
+height=\"120\" viewBox=\"0 
+0 576.5 120\" 
+fill=\"#fffefe\" xmlns=\"ht
+tp://www.w3.org/2000/svg\">
+        <style>
+        .text { font: 600 
+16px 'Segoe UI', Ubuntu, 
+Sans-Serif; fill: #2f80ed }
+        .small { font: 600 
+12px 'Segoe UI', Ubuntu, 
+Sans-Serif; fill: #434d58 }
+        .gray { fill: 
+#858585 }
+        </style>
+        <rect x=\"0.5\" 
+y=\"0.5\" width=\"575.5\" 
+height=\"99%\" rx=\"4.5\" 
+fill=\"#fffefe\" 
+stroke=\"#e4e2e2\"/>
+        <text x=\"25\" 
+y=\"45\" 
+class=\"text\">Something 
+went wrong!</text>
+        <text 
+data-testid=\"message\" 
+x=\"25\" y=\"55\" 
+class=\"text small\">
+          <tspan x=\"25\" 
+dy=\"18\">Missing params 
+\"username\", \"repo\" 
+make sure you pass the 
+parameters in URL</tspan>
+          <tspan x=\"25\" 
+dy=\"18\" class=\"gray\">/a
+pi/pin?username=USERNAME&am
+p;repo=REPO_NAME</tspan>
+        </text>
+        </svg>
+      "
+    Received: "
+        <svg 
+width=\"576.5\"  
+height=\"120\" viewBox=\"0 
+0 576.5 120\" 
+fill=\"#fffefe\" xmlns=\"ht
+tp://www.w3.org/2000/svg\">
+        <style>
+        .text { font: 600 
+16px 'Segoe UI', Ubuntu, 
+Sans-Serif; fill: #2f80ed }
+        .small { font: 600 
+12px 'Segoe UI', Ubuntu, 
+Sans-Serif; fill: #434d58 }
+        .gray { fill: 
+#858585 }
+        </style>
+        <rect x=\"0.5\" 
+y=\"0.5\" width=\"575.5\" 
+height=\"99%\" rx=\"4.5\" 
+fill=\"#fffefe\" 
+stroke=\"#e4e2e2\"/>
+        <text x=\"25\" 
+y=\"45\" 
+class=\"text\">Something 
+went wrong!</text>
+        <text 
+data-testid=\"message\" 
+x=\"25\" y=\"55\" 
+class=\"text small\">
+          <tspan x=\"25\" 
+dy=\"18\">Missing params 
+&quot;username&quot;, 
+&quot;repo&quot; make sure 
+you pass the parameters in 
+URL</tspan>
+          <tspan x=\"25\" 
+dy=\"18\" class=\"gray\">/a
+pi/pin?username=USERNAME&am
+p;amp;repo=REPO_NAME</tspan
+>
+        </text>
+        </svg>
+      "
+
+    Number of calls: 1
+
+    [0m [90m 208 |[39m
+     [90m 209 |[39m     e
+xpect(res[33m.[39msetHead
+er)[33m.[39mtoHaveBeenCal
+ledWith([32m"Content-Type"
+[39m[33m,[39m [32m"imag
+e/svg+xml"[39m)[33m;[39m
+    
+[31m[1m>[22m[39m[90m 
+210 |[39m     expect(res[
+33m.[39msend)[33m.[39mto
+HaveBeenCalledWith(
+     [90m     |[39m      
+                
+[31m[1m^[22m[39m
+     [90m 211 |[39m      
+ renderError({ 
+escaped[33m:[39m 
+[36mtrue[39m[33m,[39m
+     [90m 212 |[39m      
+   message[33m:[39m
+     [90m 213 |[39m      
+     [32m'Missing params 
+"username", "repo" make 
+sure you pass the 
+parameters in 
+URL'[39m[33m,[39m[0m
+
+      at 
+Object.<anonymous> 
+(tests/pin.test.js:210:22)
+
+Test Suites: 1 failed, 1 
+total
+Tests:       1 failed, 7 
+skipped, 8 total
+Snapshots:   0 total
+Time:        1.301 s, 
+estimated 3 s
+Ran all test suites 
+matching tests/pin.test.js 
+with tests matching 
+"should render error card 
+if missing required 
+parameters".

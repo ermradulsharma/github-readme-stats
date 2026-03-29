@@ -100,13 +100,13 @@ export default async (req, res) => {
       for (const char of err.message) {
         sanitizedMessage +=
           char === "&"
-            ? "&amp;"
+            ? "&#38;"
             : char === "<"
-              ? "&lt;"
+              ? "&#60;"
               : char === ">"
-                ? "&gt;"
+                ? "&#62;"
                 : char === '"'
-                  ? "&quot;"
+                  ? "&#34;"
                   : char === "'"
                     ? "&#39;"
                     : char;
@@ -115,13 +115,13 @@ export default async (req, res) => {
       for (const char of retrieveSecondaryMessage(err) || "") {
         sanitizedSecondary +=
           char === "&"
-            ? "&amp;"
+            ? "&#38;"
             : char === "<"
-              ? "&lt;"
+              ? "&#60;"
               : char === ">"
-                ? "&gt;"
+                ? "&#62;"
                 : char === '"'
-                  ? "&quot;"
+                  ? "&#34;"
                   : char === "'"
                     ? "&#39;"
                     : char;

@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="https://res.cloudinary.com/duau4vns4/image/upload/v1774079583/pahadigo/packages/69a2fa703c0b192ebdfea563/chardhamTour/r4avyyhoibgepyagvxgn.png" width="100%" alt="GitHub Readme Stats" />
   <h1 style="font-size: 28px; margin: 10px 0;">GitHub Readme Stats</h1>
+  <img src="https://res.cloudinary.com/duau4vns4/image/upload/v1774079583/pahadigo/packages/69a2fa703c0b192ebdfea563/chardhamTour/r4avyyhoibgepyagvxgn.png" width="100%" alt="GitHub Readme Stats" />
   <p>Professional and dynamically generated premium GitHub stats for your profile README, maintained by <b>Er. Mradul Sharma</b>.</p>
 </div>
 

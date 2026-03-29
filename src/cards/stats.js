@@ -511,8 +511,10 @@ const renderStatsCard = (stats, options = {}) => {
     45 + (statItems.length + 1) * (layout === "bar" ? lheight + 15 : lheight),
     hide_rank ? 0 : statItems.length ? 150 : 180,
   );
+
+  // Increase height for line layout to accommodate the activity graph
   if (layout === "line") {
-    height += 60;
+    height += 80;
   }
 
   // the lower the user's percentile the better
@@ -615,10 +617,10 @@ const renderStatsCard = (stats, options = {}) => {
       </g>`;
 
   const lineGraph =
-    layout === "line"
-      ? `<g transform="translate(0, ${height - 70})">
+    layout === "line" && rank_history && rank_history.length > 0
+      ? `<g transform="translate(0, ${height - 150})">
           <text class="stat bold" x="25" y="-5">${i18n.t("wakatimecard.lastyear")} Activity</text>
-          ${renderLineGraph(rank_history || [], iconColor)}
+          ${renderLineGraph(rank_history, iconColor)}
         </g>`
       : "";
 

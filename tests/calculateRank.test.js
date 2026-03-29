@@ -30,7 +30,7 @@ describe("Test calculateRank", () => {
       followers: 5,
     });
     expect(result.level).toBe("B-");
-    expect(result.percentile).toBeCloseTo(65.029, 3);
+    expect(result.percentile).toBeCloseTo(65.02918514848257, 10);
   });
 
   it("median user gets B+ rank", () => {
@@ -75,7 +75,7 @@ describe("Test calculateRank", () => {
       followers: 40,
     });
     expect(result.level).toBe("A");
-    expect(result.percentile).toBeCloseTo(20.841, 3);
+    expect(result.percentile).toBeCloseTo(20.841471354166664, 10);
   });
 
   it("expert user gets A+ rank", () => {
@@ -90,7 +90,7 @@ describe("Test calculateRank", () => {
       followers: 160,
     });
     expect(result.level).toBe("A+");
-    expect(result.percentile).toBeCloseTo(5.575, 3);
+    expect(result.percentile).toBeCloseTo(5.575988339442828, 10);
   });
 
   it("sindresorhus gets S rank", () => {
@@ -105,6 +105,6 @@ describe("Test calculateRank", () => {
       followers: 50000,
     });
     expect(result.level).toBe("S");
-    expect(result.percentile).toBeCloseTo(0.457, 3);
+    expect(result.percentile).toBeCloseTo(0.4578556547153667, 10);
   });
 });

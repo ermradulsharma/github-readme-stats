@@ -740,6 +740,26 @@ Choose from any of the [default themes](#themes)
 
 ![Harlok's WakaTime stats](https://mradulsharma-readme.vercel.app/api/wakatime?username=ffflabs)
 
+- Bar Chart Layout
+
+![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=bar)
+
+- Line Graph Activity (Daily Contributions)
+
+![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&layout=line)
+
+- Glassmorphism Theme
+
+![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&theme=glassmorphism&show_icons=true)
+
+- Cyberpunk Theme
+
+![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&theme=cyberpunk&show_icons=true)
+
+- Ambient Gradient Theme
+
+![Mradul's GitHub stats](https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&theme=ambient_gradient&show_icons=true)
+
 ***
 
 ## Quick Tip (Align The Cards)

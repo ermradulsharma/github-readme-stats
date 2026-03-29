@@ -258,17 +258,18 @@ const getTotalCommitsYearLabel = (include_all_commits, commits_year, i18n) =>
 const renderStatsCard = (stats, options = {}) => {
   const {
     name,
-    totalStars,
-    totalCommits,
-    totalIssues,
     totalPRs,
     totalPRsMerged,
     mergedPRsPercentage,
     totalReviews,
+    totalCommits,
+    totalIssues,
+    totalStars,
     totalDiscussionsStarted,
     totalDiscussionsAnswered,
     contributedTo,
     rank,
+    rank_history,
   } = stats;
   const {
     hide = [],
@@ -296,6 +297,7 @@ const renderStatsCard = (stats, options = {}) => {
     disable_animations = false,
     rank_icon = "default",
     show = [],
+    layout,
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -322,6 +324,7 @@ const renderStatsCard = (stats, options = {}) => {
   });
 
   // Meta data for creating text nodes with createTextNode function
+  /** @type {Record<string, { icon: string, label: string, value: any, id: string, unitSymbol?: string }>} */
   const STATS = {};
 
   STATS.stars = {
@@ -413,12 +416,72 @@ const renderStatsCard = (stats, options = {}) => {
   // @ts-ignore
   const isLongLocale = locale ? LONG_LOCALES.includes(locale) : false;
 
+  /**
+   * Renders a sparkline graph for contributions history.
+   * @param {number[]} history Daily contribution counts.
+   * @param {string} color The color of the line.
+   * @returns {string} SVG path
+   */
+  const renderLineGraph = (history, color) => {
+    if (!history || history.length < 2) {
+      return "";
+    }
+    const max = Math.max(...history) || 1;
+    const width = 160;
+    const height = 40;
+    const step = width / (history.length - 1);
+    const points = history
+      .map((val, i) => `${i * step},${height - (val / max) * height}`)
+      .join(" ");
+    return `
+      <g transform="translate(25, 10)">
+        <polyline
+          fill="none"
+          stroke="${color}"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          points="${points}"
+          class="stagger"
+        />
+      </g>`;
+  };
+
+  /**
+   * Renders a bar chart for a stat item.
+   * @param {number} value The stat value.
+   * @param {number} max The maximum value for normalization.
+   * @param {string} color The color of the fill bar.
+   * @returns {string} SVG bar
+   */
+  const renderBarChart = (value, max, color) => {
+    const width = 150;
+    const fillWidth = (value / max) * width || 0;
+    return `
+      <svg width="${width}" height="8" x="0" y="8">
+        <rect width="${width}" height="8" fill="#eee" rx="4" />
+        <rect width="${fillWidth}" height="8" fill="${color}" rx="4" class="stagger" />
+      </svg>
+    `;
+  };
+
+  const statValues = Object.values(STATS).map((s) => s.value);
+  const maxValue = Math.max(...statValues) || 1;
+
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key, index) => {
-      // @ts-ignore
       const stats = STATS[key];
+
+      if (layout === "bar") {
+        return `
+          <g transform="translate(0, ${index * (lheight + 15)})" class="stagger">
+            <text class="stat bold" y="5">${stats.label}: ${stats.value}${stats.unitSymbol || ""}</text>
+            ${renderBarChart(stats.value, maxValue, iconColor)}
+          </g>
+        `;
+      }
 
       // create the text nodes, and pass index so that we can calculate the line spacing
       return createTextNode({
@@ -444,11 +507,13 @@ const renderStatsCard = (stats, options = {}) => {
   }
 
   // Calculate the card height depending on how many items there are
-  // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(
-    45 + (statItems.length + 1) * lheight,
+    45 + (statItems.length + 1) * (layout === "bar" ? lheight + 15 : lheight),
     hide_rank ? 0 : statItems.length ? 150 : 180,
   );
+  if (layout === "line") {
+    height += 60;
+  }
 
   // the lower the user's percentile the better
   const progress = 100 - rank.percentile;
@@ -471,11 +536,6 @@ const renderStatsCard = (stats, options = {}) => {
     );
   };
 
-  /*
-    When hide_rank=true, the minimum card width is 270 px + the title length and padding.
-    When hide_rank=false, the minimum card_width is 340 px + the icon width (if show_icons=true).
-    Numbers are picked by looking at existing dimensions on production.
-  */
   const iconWidth = show_icons && statItems.length ? 16 + /* padding */ 1 : 0;
   const minCardWidth =
     (hide_rank
@@ -527,16 +587,6 @@ const renderStatsCard = (stats, options = {}) => {
     card.disableAnimations();
   }
 
-  /**
-   * Calculates the right rank circle translation values such that the rank circle
-   * keeps respecting the following padding:
-   *
-   * width > RANK_CARD_DEFAULT_WIDTH: The default right padding of 70 px will be used.
-   * width < RANK_CARD_DEFAULT_WIDTH: The left and right padding will be enlarged
-   *   equally from a certain minimum at RANK_CARD_MIN_WIDTH.
-   *
-   * @returns {number} - Rank circle translation value.
-   */
   const calculateRankXTranslation = () => {
     if (statItems.length) {
       const minXTranslation = RANK_CARD_MIN_WIDTH + iconWidth - 70;
@@ -551,12 +601,11 @@ const renderStatsCard = (stats, options = {}) => {
     }
   };
 
-  // Conditionally rendered elements
   const rankCircle = hide_rank
     ? ""
     : `<g data-testid="rank-circle"
           transform="translate(${calculateRankXTranslation()}, ${
-            height / 2 - 50
+            height / 2 - (layout === "line" ? 80 : 50)
           })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
@@ -565,11 +614,17 @@ const renderStatsCard = (stats, options = {}) => {
         </g>
       </g>`;
 
-  // Accessibility Labels
+  const lineGraph =
+    layout === "line"
+      ? `<g transform="translate(0, ${height - 70})">
+          <text class="stat bold" x="25" y="-5">${i18n.t("wakatimecard.lastyear")} Activity</text>
+          ${renderLineGraph(rank_history || [], iconColor)}
+        </g>`
+      : "";
+
   const labels = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key) => {
-      // @ts-ignore
       const stats = STATS[key];
       if (key === "commits") {
         return `${i18n.t("statcard.commits")} ${getTotalCommitsYearLabel(
@@ -590,12 +645,17 @@ const renderStatsCard = (stats, options = {}) => {
   return card.render(`
     ${rankCircle}
     <svg x="0" y="0">
-      ${flexLayout({
-        items: statItems,
-        gap: lheight,
-        direction: "column",
-      }).join("")}
+      ${
+        layout === "bar"
+          ? `<g transform="translate(25, 35)">${statItems.join("")}</g>`
+          : flexLayout({
+              items: statItems,
+              gap: lheight,
+              direction: "column",
+            }).join("")
+      }
     </svg>
+    ${lineGraph}
   `);
 };
 

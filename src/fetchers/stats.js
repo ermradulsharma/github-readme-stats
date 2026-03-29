@@ -43,8 +43,16 @@ const GRAPHQL_STATS_QUERY = `
     user(login: $login) {
       name
       login
-      commits: contributionsCollection (from: $startTime) {
-        totalCommitContributions,
+      commits: contributionsCollection(from: $startTime) {
+        totalCommitContributions
+        contributionCalendar {
+          weeks {
+            contributionDays {
+              contributionCount
+              date
+            }
+          }
+        }
       }
       reviews: contributionsCollection {
         totalPullRequestReviewContributions
@@ -250,6 +258,8 @@ const fetchStats = async (
     totalDiscussionsAnswered: 0,
     contributedTo: 0,
     rank: { level: "C", percentile: 100 },
+    /** @type {number[]} */
+    rank_history: [],
   };
 
   let res = await statsFetcher({
@@ -282,8 +292,13 @@ const fetchStats = async (
   }
 
   const user = res.data.data.user;
-
   stats.name = user.name || user.login;
+
+  // Extract rank_history (daily contributions for last 30 days).
+  const allDays = (user.commits?.contributionCalendar?.weeks || [])
+    .flatMap((/** @type {any} */ week) => week.contributionDays)
+    .map((/** @type {any} */ day) => day.contributionCount);
+  stats.rank_history = allDays.slice(-30);
 
   // if include_all_commits, fetch all commits using the REST API.
   if (include_all_commits) {

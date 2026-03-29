@@ -13,6 +13,7 @@ const data_stats = {
       repositoriesContributedTo: { totalCount: 61 },
       commits: {
         totalCommitContributions: 100,
+        contributionCalendar: { weeks: [] },
       },
       reviews: {
         totalPullRequestReviewContributions: 50,
@@ -153,6 +154,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -189,6 +191,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -231,6 +234,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -280,6 +284,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -311,6 +316,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -342,6 +348,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -373,6 +380,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -402,6 +410,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -431,6 +440,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 10,
       totalDiscussionsAnswered: 40,
       rank,
+      rank_history: [],
     });
   });
 
@@ -469,6 +479,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 
@@ -502,6 +513,7 @@ describe("Test fetchStats", () => {
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
+      rank_history: [],
     });
   });
 });

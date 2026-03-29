@@ -37,6 +37,7 @@ export type StatsData = {
   totalDiscussionsAnswered: number;
   contributedTo: number;
   rank: { level: string; percentile: number };
+  rank_history: number[];
 };
 
 export type Lang = {

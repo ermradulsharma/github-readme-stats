@@ -462,6 +462,41 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  glassmorphism: {
+    title_color: "ffffff",
+    icon_color: "00d4ff",
+    text_color: "e0e0e0",
+    bg_color: "40,ffffff22,ffffff11",
+    border_color: "ffffff44",
+  },
+  cyberpunk: {
+    title_color: "ff0055",
+    icon_color: "00ffcc",
+    text_color: "fffb00",
+    bg_color: "000505",
+    border_color: "ff0055",
+  },
+  neon: {
+    title_color: "00e5ff",
+    icon_color: "ff00ff",
+    text_color: "ffffff",
+    bg_color: "0a0a0a",
+    border_color: "00e5ff",
+  },
+  "dracula-refined": {
+    title_color: "bd93f9",
+    icon_color: "ff79c6",
+    text_color: "f8f8f2",
+    bg_color: "282a36",
+    border_color: "44475a",
+  },
+  "outrun-vibrant": {
+    title_color: "ff00ff",
+    icon_color: "00ffff",
+    text_color: "ffff00",
+    bg_color: "1a0033",
+    border_color: "ff00ff",
+  },
 };
 
 export default themes;

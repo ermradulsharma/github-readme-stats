@@ -7,7 +7,7 @@ With inbuilt themes, you can customize the look of the card without doing any ma
 Use `?theme=THEME_NAME` parameter like so:
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=ermradulsharma&theme=dark&show_icons=true)
+![Er. Mradul Sharma's GitHub stats](https://github-readme-stats.vercel.app/api?username=ermradulsharma&theme=dark&show_icons=true)
 ```
 
 ## Stats

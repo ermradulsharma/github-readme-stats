@@ -1,6 +1,5 @@
 // @ts-check
 
-import { encodeHTML } from "../src/common/html.js";
 import { renderError } from "../src/common/render.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import { renderGistCard } from "../src/cards/gist.js";
@@ -99,8 +98,18 @@ export default async (req, res) => {
     if (err instanceof Error) {
       return res.send(
         renderError({
-          message: encodeHTML(err.message),
-          secondaryMessage: encodeHTML(retrieveSecondaryMessage(err) || ""),
+          message: err.message
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;"),
+          secondaryMessage: (retrieveSecondaryMessage(err) || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;"),
           escaped: true,
           renderOptions: {
             title_color,

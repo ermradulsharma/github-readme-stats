@@ -151,7 +151,6 @@ Use `?theme=THEME_NAME` parameter like so:
 [calm_pink]: https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=calm_pink
 [ambient_gradient]: https://mradulsharma-readme.vercel.app/api?username=ermradulsharma&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=ambient_gradient
 
-
 [default_repo]: https://mradulsharma-readme.vercel.app/api/pin/?username=ermradulsharma&repo=github-readme-stats&cache_seconds=86400&theme=default
 [default_repocard_repo]: https://mradulsharma-readme.vercel.app/api/pin/?username=ermradulsharma&repo=github-readme-stats&cache_seconds=86400&theme=default_repocard
 [transparent_repo]: https://mradulsharma-readme.vercel.app/api/pin/?username=ermradulsharma&repo=github-readme-stats&cache_seconds=86400&theme=transparent

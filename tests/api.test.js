@@ -134,7 +134,7 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({
+      renderError({ escaped: true,
         message: error.errors[0].message,
         secondaryMessage:
           "Make sure the provided username is not an organization",
@@ -149,7 +149,7 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({
+      renderError({ escaped: true,
         message: error.errors[0].message,
         secondaryMessage:
           "Make sure the provided username is not an organization",
@@ -363,7 +363,7 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({
+      renderError({ escaped: true,
         message: "This username is blacklisted",
         secondaryMessage: "Please deploy your own instance",
         renderOptions: { show_repo_link: false },
@@ -378,7 +378,7 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({
+      renderError({ escaped: true,
         message: "Something went wrong",
         secondaryMessage: "Language not found",
       }),
@@ -399,7 +399,7 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({
+      renderError({ escaped: true,
         message: "Could not fetch total commits.",
         secondaryMessage: "Please try again later",
       }),

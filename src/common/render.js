@@ -182,9 +182,7 @@ const renderError = ({
     }</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${escaped ? message : encodeHTML(message)}</tspan>
-      <tspan x="25" dy="18" class="gray">${
-        escaped ? secondaryMessage : encodeHTML(secondaryMessage)
-      }</tspan>
+      <tspan x="25" dy="18" class="gray">${escaped ? secondaryMessage : encodeHTML(secondaryMessage)}</tspan>
     </text>
     </svg>
   `;

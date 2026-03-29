@@ -22,7 +22,8 @@ const isValidHexColor = (hexColor) => {
  */
 const isValidGradient = (colors) => {
   return (
-    colors.length > 2 &&
+    colors.length > 1 &&
+    /^-?\d+(\.\d+)?$/.test(colors[0]) &&
     colors.slice(1).every((color) => isValidHexColor(color))
   );
 };
@@ -85,11 +86,13 @@ const getCardColors = ({
   const defaultTheme = themes["default"];
   const isThemeProvided = theme !== null && theme !== undefined;
 
-  // @ts-ignore
-  const selectedTheme = isThemeProvided ? themes[theme] : defaultTheme;
+  const selectedTheme =
+    isThemeProvided && /** @type {any} */ (themes)[theme]
+      ? /** @type {any} */ (themes)[theme]
+      : defaultTheme;
 
   const defaultBorderColor =
-    "border_color" in selectedTheme
+    selectedTheme && "border_color" in selectedTheme
       ? selectedTheme.border_color
       : // @ts-ignore
         defaultTheme.border_color;

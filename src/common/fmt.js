@@ -1,7 +1,6 @@
 // @ts-check
 
 import wrap from "word-wrap";
-import { encodeHTML } from "./html.js";
 
 /**
  * Retrieves num with suffix k(thousands) precise to given decimal places.
@@ -62,15 +61,14 @@ const formatBytes = (bytes) => {
  */
 const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
   const fullWidthComma = "，";
-  const encoded = encodeHTML(text);
-  const isChinese = encoded.includes(fullWidthComma);
+  const isChinese = text.includes(fullWidthComma);
 
   let wrapped = [];
 
   if (isChinese) {
-    wrapped = encoded.split(fullWidthComma); // Chinese full punctuation
+    wrapped = text.split(fullWidthComma); // Chinese full punctuation
   } else {
-    wrapped = wrap(encoded, {
+    wrapped = wrap(text, {
       width,
     }).split("\n"); // Split wrapped lines to get an array of lines
   }

@@ -6,10 +6,10 @@ import { CustomError, MissingParamError } from "../common/error.js";
 /**
  * WakaTime data fetcher.
  *
- * @param {{username: string, api_domain: string }} props Fetcher props.
+ * @param {{username: string }} props Fetcher props.
  * @returns {Promise<import("./types").WakaTimeData>} WakaTime data response.
  */
-const fetchWakatimeStats = async ({ username, api_domain }) => {
+const fetchWakatimeStats = async ({ username }) => {
   if (!username) {
     throw new MissingParamError(["username"]);
   }
@@ -17,13 +17,19 @@ const fetchWakatimeStats = async ({ username, api_domain }) => {
   try {
     const { data } = await axios.get(
       `https://${
-        api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
+        process.env.WAKATIME_API_DOMAIN
+          ? process.env.WAKATIME_API_DOMAIN.replace(/\/$/gi, "")
+          : "wakatime.com"
       }/api/v1/users/${username}/stats?is_including_today=true`,
     );
 
     return data.data;
   } catch (err) {
-    if (err.response.status < 200 || err.response.status > 299) {
+    if (
+      axios.isAxiosError(err) &&
+      err.response &&
+      err.response.status === 404
+    ) {
       throw new CustomError(
         `Could not resolve to a User with the login of '${username}'`,
         "WAKATIME_USER_NOT_FOUND",

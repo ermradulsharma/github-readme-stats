@@ -10,6 +10,7 @@ import {
   flexLayout,
   measureText,
 } from "../common/render.js";
+import { encodeHTML } from "../common/html.js";
 import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
@@ -242,8 +243,8 @@ const createProgressTextNode = ({
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
-      <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
-      <text x="${progressTextX}" y="34" class="lang-name">${displayValue}</text>
+      <text data-testid="lang-name" x="2" y="15" class="lang-name">${encodeHTML(name)}</text>
+      <text x="${progressTextX}" y="34" class="lang-name">${encodeHTML(displayValue)}</text>
       ${createProgressNode({
         x: 0,
         y: 25,
@@ -285,7 +286,7 @@ const createCompactLangNode = ({
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} ${hideProgress ? "" : displayValue}
+        ${encodeHTML(lang.name)} ${hideProgress ? "" : encodeHTML(displayValue)}
       </text>
     </g>
   `;

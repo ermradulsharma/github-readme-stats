@@ -8,6 +8,7 @@ import { I18n } from "../common/I18n.js";
 import { icons, rankIcon } from "../common/icons.js";
 import { clampValue } from "../common/ops.js";
 import { flexLayout, measureText } from "../common/render.js";
+import { encodeHTML } from "../common/html.js";
 import { statCardLocales, wakatimeCardLocales } from "../translations.js";
 
 const CARD_MIN_WIDTH = 287;
@@ -104,13 +105,13 @@ const createTextNode = ({
       ${iconSvg}
       <text class="stat ${
         bold ? " bold" : "not_bold"
-      }" ${labelOffset} y="12.5">${label}:</text>
+      }" ${labelOffset} y="12.5">${encodeHTML(label)}:</text>
       <text
         class="stat ${bold ? " bold" : "not_bold"}"
         x="${(showIcons ? 140 : 120) + shiftValuePos}"
         y="12.5"
         data-testid="${id}"
-      >${kValue}${unitSymbol ? ` ${unitSymbol}` : ""}</text>
+      >${encodeHTML(String(kValue))}${unitSymbol ? ` ${encodeHTML(unitSymbol)}` : ""}</text>
     </g>
   `;
 };

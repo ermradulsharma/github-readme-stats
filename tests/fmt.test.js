@@ -99,6 +99,6 @@ describe("Test fmt.js", () => {
       "专门为刚开始刷题的同学准备的算法基地，没有最细只有更细，立志用动画将晦涩难懂的算法说的通俗易懂！",
     );
     expect(multiLineText.length).toEqual(3);
-    expect(multiLineText[0].length).toEqual(18 * 8); // &#xxxxx; x 8
+    expect(multiLineText[0].length).toEqual(18);
   });
 });

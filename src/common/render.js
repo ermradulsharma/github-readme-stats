@@ -41,7 +41,7 @@ const createLanguageNode = (langName, langColor) => {
   return `
     <g data-testid="primary-lang">
       <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
-      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
+      <text data-testid="lang-name" class="gray" x="15">${encodeHTML(langName)}</text>
     </g>
     `;
 };
@@ -111,7 +111,7 @@ const iconWithLabel = (icon, label, testid, iconSize) => {
         ${icon}
       </svg>
     `;
-  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
+  const text = `<text data-testid="${testid}" class="gray">${encodeHTML(String(label))}</text>`;
   return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
 };
 
@@ -180,7 +180,7 @@ const renderError = ({
     }</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
-      <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
+      <tspan x="25" dy="18" class="gray">${encodeHTML(secondaryMessage)}</tspan>
     </text>
     </svg>
   `;

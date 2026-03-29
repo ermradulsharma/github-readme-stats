@@ -37,7 +37,6 @@ export default async (req, res) => {
     layout,
     langs_count,
     hide,
-    api_domain,
     border_radius,
     border_color,
     display_format,
@@ -79,7 +78,7 @@ export default async (req, res) => {
   }
 
   try {
-    const stats = await fetchWakatimeStats({ username, api_domain });
+    const stats = await fetchWakatimeStats({ username });
     const cacheSeconds = resolveCacheSeconds({
       requested: parseInt(cache_seconds, 10),
       def: CACHE_TTL.WAKATIME_CARD.DEFAULT,

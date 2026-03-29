@@ -5,6 +5,7 @@ import { getCardColors } from "../common/color.js";
 import { I18n } from "../common/I18n.js";
 import { clampValue, lowercaseTrim } from "../common/ops.js";
 import { createProgressNode, flexLayout } from "../common/render.js";
+import { encodeHTML } from "../common/html.js";
 import { wakatimeCardLocales } from "../translations.js";
 
 /** Import language colors.
@@ -78,7 +79,7 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
     <g transform="translate(${x}, ${y})">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} - ${value}
+        ${encodeHTML(lang.name)} - ${encodeHTML(value)}
       </text>
     </g>
   `;
@@ -154,7 +155,7 @@ const createTextNode = ({
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
-      <text class="stat bold" y="12.5" data-testid="${id}">${label}:</text>
+      <text class="stat bold" y="12.5" data-testid="${id}">${encodeHTML(label)}:</text>
       <text
         class="stat"
         x="${hideProgress ? HIDDEN_PROGRESSBAR_PADDING : PROGRESSBAR_PADDING + progressBarWidth}"

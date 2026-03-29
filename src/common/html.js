@@ -3,15 +3,26 @@
 /**
  * Encode string as HTML.
  *
- * @see https://stackoverflow.com/a/48073476/10629172
- *
  * @param {string} str String to encode.
  * @returns {string} Encoded string.
  */
 const encodeHTML = (str) => {
   return str
-    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
-      return "&#" + i.charCodeAt(0) + ";";
+    .replace(/[<>&"']/g, (i) => {
+      switch (i) {
+        case "<":
+          return "&#60;";
+        case ">":
+          return "&#62;";
+        case "&":
+          return "&#38;";
+        case '"':
+          return "&#34;";
+        case "'":
+          return "&#39;";
+        default:
+          return i;
+      }
     })
     .replace(/\u0008/gim, "");
 };

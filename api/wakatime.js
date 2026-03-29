@@ -2,6 +2,7 @@
 
 import { renderWakatimeCard } from "../src/cards/wakatime.js";
 
+import { encodeHTML } from "../src/common/html.js";
 import { renderError } from "../src/common/render.js";
 import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
@@ -117,8 +118,9 @@ export default async (req, res) => {
     if (err instanceof Error) {
       return res.send(
         renderError({
-          message: err.message,
-          secondaryMessage: retrieveSecondaryMessage(err),
+          message: encodeHTML(err.message),
+          secondaryMessage: encodeHTML(retrieveSecondaryMessage(err) || ""),
+          escaped: true,
           renderOptions: {
             title_color,
             text_color,

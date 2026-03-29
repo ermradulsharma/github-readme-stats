@@ -13,6 +13,7 @@ import {
   retrieveSecondaryMessage,
 } from "../src/common/error.js";
 
+import { encodeHTML } from "../src/common/html.js";
 import { parseArray, parseBoolean } from "../src/common/ops.js";
 import { renderError } from "../src/common/render.js";
 import { fetchStats } from "../src/fetchers/stats.js";
@@ -139,8 +140,9 @@ export default async (req, res) => {
     if (err instanceof Error) {
       return res.send(
         renderError({
-          message: err.message,
-          secondaryMessage: retrieveSecondaryMessage(err),
+          message: encodeHTML(err.message),
+          secondaryMessage: encodeHTML(retrieveSecondaryMessage(err) || ""),
+          escaped: true,
           renderOptions: {
             title_color,
             text_color,

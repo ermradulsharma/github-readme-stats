@@ -136,12 +136,14 @@ const UPSTREAM_API_ERRORS = [
  * @param {string=} args.renderOptions.border_color Card border color.
  * @param {Parameters<typeof getCardColors>[0]["theme"]=} args.renderOptions.theme Card theme.
  * @param {boolean=} args.renderOptions.show_repo_link Whether to show repo link or not.
+ * @param {boolean=} args.escaped Whether the message is already escaped.
  * @returns {string} The SVG markup.
  */
 const renderError = ({
   message,
   secondaryMessage = "",
   renderOptions = {},
+  escaped = false,
 }) => {
   const {
     title_color,
@@ -179,8 +181,10 @@ const renderError = ({
         : " file an issue at https://tiny.one/readme-stats"
     }</text>
     <text data-testid="message" x="25" y="55" class="text small">
-      <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
-      <tspan x="25" dy="18" class="gray">${encodeHTML(secondaryMessage)}</tspan>
+      <tspan x="25" dy="18">${escaped ? message : encodeHTML(message)}</tspan>
+      <tspan x="25" dy="18" class="gray">${
+        escaped ? secondaryMessage : encodeHTML(secondaryMessage)
+      }</tspan>
     </text>
     </svg>
   `;

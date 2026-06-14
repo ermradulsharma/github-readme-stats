@@ -44,4 +44,4 @@ jobs:
           npm run format:check
 
       - name: Code Coverage
-        uses: codecov/codecov-action@v6.0.0 # v6.0.0
+        uses: codecov/codecov-action@v7.0.0 # v6.0.0

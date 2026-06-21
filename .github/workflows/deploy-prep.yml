@@ -14,7 +14,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6.0.2 # v6.0.2
+      - uses: actions/checkout@v7.0.0 # v6.0.2
       - name: Deployment Prep
         run: python ./.github/workflows/deploy-prep.py
       - uses: stefanzweifel/git-auto-commit-action@v7.1.0 # v7.1.0

@@ -8,22 +8,11 @@
  */
 const encodeHTML = (str) => {
   return str
-    .replace(/[<>&"']/g, (i) => {
-      switch (i) {
-        case "<":
-          return "&#60;";
-        case ">":
-          return "&#62;";
-        case "&":
-          return "&#38;";
-        case '"':
-          return "&#34;";
-        case "'":
-          return "&#39;";
-        default:
-          return i;
-      }
-    })
+    .replace(/&/g, "&#38;")
+    .replace(/</g, "&#60;")
+    .replace(/>/g, "&#62;")
+    .replace(/"/g, "&#34;")
+    .replace(/'/g, "&#39;")
     .replace(/\u0008/gim, "");
 };
 

@@ -25,20 +25,14 @@
   </a>
   <br />
   <br />
-  <a href="https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss">
+  <a href="https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss">
     <img src="./powered-by-vercel.svg"/>
   </a>
 </p>
 
 <p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to support the original creator!</p>
 
-> [!CAUTION]
-> **This repository is no longer maintained. Please use the successor project [GitHub Stats Extended](https://github.com/stats-organization/github-stats-extended) instead! GitHub Stats Extended is an actively maintained fork of this repository with additional features and improved stability. Alternatively you can also use [GitHub Readme Stats Action](https://github.com/stats-organization/github-readme-stats-action).**
 
-<details>
-<summary>Click here to view the outdated documentation. Kept for reference only.</summary>
-
-<br>
 
 <p align="center">
   <a href="#all-demos">View Demo</a>
@@ -1110,10 +1104,8 @@ Thanks! :heart:
 
 ***
 
-[![https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss](powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team\&utm_campaign=oss)
+[![Vercel Badge](powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
-
-</details>

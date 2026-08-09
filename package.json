@@ -72,5 +72,13 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "overrides": {
+    "brace-expansion": "$brace-expansion",
+    "qs": "$qs",
+    "undici": "$undici"
+  },
+  "allowScripts": {
+    "unrs-resolver": true
   }
 }

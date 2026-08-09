@@ -4,7 +4,8 @@ on:
     types:
       - closed
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   cleanup:

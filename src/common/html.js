@@ -27,4 +27,22 @@ const encodeHTML = (str) => {
     .replace(/\u0008/gim, "");
 };
 
-export { encodeHTML };
+/**
+ * Sanitize a string or an array of strings.
+ *
+ * @param {string | string[]} value Value to sanitize.
+ * @returns {string | string[]} Sanitized value.
+ */
+const sanitizeQueryParam = (value) => {
+  if (typeof value === "string") {
+    return encodeHTML(value);
+  }
+  if (Array.isArray(value)) {
+    return value.map((item) =>
+      typeof item === "string" ? encodeHTML(item) : item,
+    );
+  }
+  return value;
+};
+
+export { encodeHTML, sanitizeQueryParam };

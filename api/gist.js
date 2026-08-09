@@ -16,9 +16,14 @@ import {
   retrieveSecondaryMessage,
 } from "../src/common/error.js";
 import { parseBoolean } from "../src/common/ops.js";
+import { sanitizeQueryParam } from "../src/common/html.js";
 
 // @ts-ignore
 export default async (req, res) => {
+  Object.keys(req.query).forEach((key) => {
+    req.query[key] = sanitizeQueryParam(req.query[key]);
+  });
+
   const {
     id,
     title_color,

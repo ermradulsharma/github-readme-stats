@@ -14,12 +14,17 @@ import {
 } from "../src/common/error.js";
 
 import { parseArray, parseBoolean } from "../src/common/ops.js";
+import { sanitizeQueryParam } from "../src/common/html.js";
 import { renderError } from "../src/common/render.js";
 import { fetchStats } from "../src/fetchers/stats.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 // @ts-ignore
 export default async (req, res) => {
+  Object.keys(req.query).forEach((key) => {
+    req.query[key] = sanitizeQueryParam(req.query[key]);
+  });
+
   const {
     username,
     hide,

@@ -18,7 +18,7 @@ jobs:
       issues: write
     steps:
       # NOTE: Retrieve issue templates.
-      - uses: actions/checkout@v6.0.2 # v6.0.2
+      - uses: actions/checkout@v7.0.0 # v6.0.2
 
       - name: Run empty issues closer action
         uses: rickstaa/empty-issues-closer-action@e96914613221511279ca25f50fd4acc85e331d99 # v1.1.74

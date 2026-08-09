@@ -143,7 +143,6 @@ const renderError = ({
   message,
   secondaryMessage = "",
   renderOptions = {},
-  escaped = false,
 }) => {
   const {
     title_color,
@@ -181,8 +180,8 @@ const renderError = ({
         : " file an issue at https://tiny.one/readme-stats"
     }</text>
     <text data-testid="message" x="25" y="55" class="text small">
-      <tspan x="25" dy="18">${escaped ? message : encodeHTML(message)}</tspan>
-      <tspan x="25" dy="18" class="gray">${escaped ? secondaryMessage : encodeHTML(secondaryMessage)}</tspan>
+      <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
+      <tspan x="25" dy="18" class="gray">${encodeHTML(secondaryMessage)}</tspan>
     </text>
     </svg>
   `;

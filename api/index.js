@@ -144,41 +144,10 @@ export default async (req, res) => {
   } catch (err) {
     setErrorCacheHeaders(res);
     if (err instanceof Error) {
-      let sanitizedMessage = "";
-      for (const char of err.message) {
-        sanitizedMessage +=
-          char === "&"
-            ? "&#38;"
-            : char === "<"
-              ? "&#60;"
-              : char === ">"
-                ? "&#62;"
-                : char === '"'
-                  ? "&#34;"
-                  : char === "'"
-                    ? "&#39;"
-                    : char;
-      }
-      let sanitizedSecondary = "";
-      for (const char of retrieveSecondaryMessage(err) || "") {
-        sanitizedSecondary +=
-          char === "&"
-            ? "&#38;"
-            : char === "<"
-              ? "&#60;"
-              : char === ">"
-                ? "&#62;"
-                : char === '"'
-                  ? "&#34;"
-                  : char === "'"
-                    ? "&#39;"
-                    : char;
-      }
       return res.send(
         renderError({
-          message: sanitizedMessage,
-          secondaryMessage: sanitizedSecondary,
-          escaped: true,
+          message: err.message,
+          secondaryMessage: retrieveSecondaryMessage(err),
           renderOptions: {
             title_color,
             text_color,

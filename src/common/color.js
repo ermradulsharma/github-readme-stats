@@ -1,6 +1,7 @@
 // @ts-check
 
 import { themes } from "../../themes/index.js";
+import { encodeHTML } from "./html.js";
 
 /**
  * Checks if a string is a valid hex color.
@@ -83,12 +84,20 @@ const getCardColors = ({
   ring_color,
   theme,
 }) => {
+  title_color = title_color ? encodeHTML(String(title_color)) : undefined;
+  text_color = text_color ? encodeHTML(String(text_color)) : undefined;
+  icon_color = icon_color ? encodeHTML(String(icon_color)) : undefined;
+  bg_color = bg_color ? encodeHTML(String(bg_color)) : undefined;
+  border_color = border_color ? encodeHTML(String(border_color)) : undefined;
+  ring_color = ring_color ? encodeHTML(String(ring_color)) : undefined;
+  theme = theme ? encodeHTML(String(theme)) : undefined;
   const defaultTheme = themes["default"];
   const isThemeProvided = theme !== null && theme !== undefined;
 
   const selectedTheme =
-    isThemeProvided && /** @type {any} */ (themes)[theme]
-      ? /** @type {any} */ (themes)[theme]
+    isThemeProvided &&
+    /** @type {any} */ (themes)[/** @type {string} */ (theme)]
+      ? /** @type {any} */ (themes)[/** @type {string} */ (theme)]
       : defaultTheme;
 
   const defaultBorderColor =

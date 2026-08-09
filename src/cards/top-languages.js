@@ -284,7 +284,7 @@ const createCompactLangNode = ({
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
-      <circle cx="5" cy="6" r="5" fill="${color}" />
+      <circle cx="5" cy="6" r="5" fill="${encodeHTML(color)}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         ${encodeHTML(lang.name)} ${hideProgress ? "" : encodeHTML(displayValue)}
       </text>

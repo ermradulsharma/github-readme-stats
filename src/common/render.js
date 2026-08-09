@@ -40,7 +40,7 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
 const createLanguageNode = (langName, langColor) => {
   return `
     <g data-testid="primary-lang">
-      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
+      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${encodeHTML(langColor)}" />
       <text data-testid="lang-name" class="gray" x="15">${encodeHTML(langName)}</text>
     </g>
     `;
@@ -76,7 +76,7 @@ const createProgressNode = ({
       <svg data-testid="lang-progress" width="${progressPercentage}%">
         <rect
             height="8"
-            fill="${color}"
+            fill="${encodeHTML(color)}"
             rx="5" ry="5" x="0" y="0"
             class="lang-progress"
             style="animation-delay: ${delay}ms;"

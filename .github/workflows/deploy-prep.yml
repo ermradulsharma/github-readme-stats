@@ -14,10 +14,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v7.0.0 # v7.0.0
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Deployment Prep
         run: python ./.github/workflows/deploy-prep.py
-      - uses: stefanzweifel/git-auto-commit-action@v7.1.0 # v7.1.0
+      - uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # v5
         with:
           branch: vercel
           create_branch: true

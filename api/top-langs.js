@@ -151,7 +151,7 @@ export default async (req, res) => {
         bg_color: sanitizeQueryParam(bg_color),
         theme: sanitizeQueryParam(theme),
         layout: sanitizeQueryParam(layout),
-        langs_count,
+        langs_count: langs_count ? parseInt(langs_count, 10) : undefined,
         border_radius: sanitizeQueryParam(border_radius),
         border_color: sanitizeQueryParam(border_color),
         locale: locale ? sanitizeQueryParam(locale.toLowerCase()) : null,

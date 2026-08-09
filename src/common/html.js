@@ -30,8 +30,8 @@ const encodeHTML = (str) => {
 /**
  * Sanitize a string or an array of strings.
  *
- * @param {string | string[]} value Value to sanitize.
- * @returns {string | string[]} Sanitized value.
+ * @param {any} value Value to sanitize.
+ * @returns {any} Sanitized value.
  */
 const sanitizeQueryParam = (value) => {
   if (typeof value === "string") {
